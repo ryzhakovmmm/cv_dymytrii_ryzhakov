@@ -1,0 +1,32 @@
+//ICONS
+@define-mixin icon $file, $fill: #565656 {
+    .icon-$(file) {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 1rem;
+        width: 1rem;
+        display: inline-block;
+        background-image: svg-load(../images/$(file).svg, fill=$(fill));
+    }
+}
+@mixin icon graduate-cap;
+@mixin icon fix;
+@mixin icon tick;
+@mixin icon puzzle;
+@mixin icon drums;
+@mixin icon camera, #565656;
+@mixin icon art, #565656;
+@mixin icon snowboard-race, #565656;
+@mixin icon clapperboard, #565656;
+@mixin icon gamepad, #565656;
+@mixin icon gear, #565656;
+@mixin icon spanner, #565656;
+@mixin icon tools, #565656;
+@mixin icon bg1, #000;
+@mixin icon bg2, #000;
+@mixin icon bg3, #000;
+@mixin icon placeholder, #fff;
+@mixin icon mail, #fff;
+@mixin icon phone, #fff;
+@mixin icon skype, #fff;

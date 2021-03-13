@@ -1,0 +1,263 @@
+@import "./icons.scss";
+
+@font-face {
+    font-family: "Inconsolata";
+    font-weight: 400;
+    src: url("../font/Inconsolata-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inconsolata";
+    font-weight: 700;
+    src: url("../font/Inconsolata-Bold.ttf") format("truetype");
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: #565656;
+    font-family: "Inconsolata", monospace;
+    line-height: 19.2px;
+    font-size: 100%;
+    text-decoration: none;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    html,
+    body {
+        width: 210mm;
+        height: 297mm;
+        transform: scale(1);
+        -webkit-print-color-adjust: exact;
+
+        .printable-page {
+            margin: 0;
+            box-shadow: 0;
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    body {
+        transform: scale(0.48);
+        transform-origin: 0 0;
+        font-size: 100%;
+        overflow: hidden;
+    }
+}
+
+img,
+embed,
+object,
+video {
+    max-width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@define-mixin flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+div[size="A4"] {
+    width: 21cm;
+    min-width: 21cm;
+    height: 29.7cm;
+    padding: 20px 20px 20px 40px;
+}
+
+.printable-page {
+    position: relative;
+    background-color: #fff;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+}
+
+.m-upper {
+    text-transform: uppercase;
+    font-size: 14px
+}
+
+.header {
+    @mixin flex-container;
+
+    &__name {
+        color: #000;
+        font-size: 50px;
+        width: 38%;
+        font-weight: 700;
+        text-shadow: 1px 1px 4px rgb(94, 91, 91);
+
+        span {
+            display: inline-block;
+            line-height: 50px;
+        }
+    }
+    &__main-info {
+        display: block;
+        order: 4;
+        width: 43%;
+        position: relative;
+        top: -3rem;
+        font-size: 16px;
+        color: gray;
+    }
+    &__avatar {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        background-image: inline("photo.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: 5px solid #fff;
+        z-index: 1;
+    }
+    &__personal-info {
+        width: 30%;
+        color: #fff;
+        text-align: end;
+        line-height: 2rem;
+        z-index: 1;
+
+        .icon {
+            vertical-align: text-bottom;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+    .bg-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 560px;
+        height: 216px;
+    }
+}
+
+.content {
+    @mixin flex-container;
+    flex-direction: column;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-content: space-between;
+    position: relative;
+    top: -40px;
+    height: 250mm;
+
+    .section-title {
+        text-transform: uppercase;
+        font-size: 20px;
+        margin: 25px 0 10px 0;
+    }
+
+    .education {
+        width: 67%;
+        height: 12%;
+        order: 2;
+
+        &__content {
+            b,
+            span {
+                display: inline-block;
+                font-size: 14px;
+            }
+        }
+    }
+    .experience {
+        width: 67%;
+        order: 3;
+        &__item {
+            &--left {
+                display: inline-block;
+                width: 58%;
+                text-align: left;
+            }
+            &--right {
+                display: inline-block;
+                width: 38%;
+                text-align: right;
+                font-weight: 700;
+            }
+            ul {
+                margin: 3px 0 2px 0 ;
+                font-size: 14px;
+            }
+        }
+    }
+    .skills {
+        width: 30%;
+        height: 66%;
+        order: 0;
+
+        &__list {
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            padding-left: 27px;
+        }
+
+        &__tools {
+            word-spacing: 4px;
+            text-align: justify;
+        }
+
+        #tag-cloud {
+            height: 160px;
+        }
+    }
+    .hobbies {
+        @mixin flex-container;
+        justify-content: flex-start;
+        width: 30%;
+        height: 34%;
+        order: 1;
+
+        .section-title {
+            width: 100%;
+            margin: 18px 0 10px 0;
+        }
+
+        figure {
+            text-align: center;
+            font-size: 12px;
+            width: 32%;
+            padding: 0;
+            margin: 15px 0;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}
+
+footer {
+    .bg-image {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 560px;
+        height: 216px;
+    }
+}

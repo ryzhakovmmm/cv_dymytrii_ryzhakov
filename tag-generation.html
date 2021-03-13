@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Word Cloud</title>
+    <meta charset=utf-8 />
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+</head>
+
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let scale = 30;
+            // List of tags
+            let tags = [
+                { word: "Java", size: scale * 1 },
+                { word: "J2EE", size: scale * 0.7 },
+                { word: "JSP", size: scale * 0.8 },
+                { word: "Servlets", size: scale * 0.7 },
+                { word: "Struts", size: scale * 0.6 },
+                { word: "JSF", size: scale * 0.5 },
+                { word: "JDBC", size: scale * 0.6 },
+                { word: "JPA", size: scale * 0.4 },
+                { word: "ASP.Net", size: scale * 0.7 },
+                { word: "jQuery", size: scale * 0.9 },
+                { word: "XML", size: scale * 0.9 },
+                { word: "C#", size: scale * 0.9 },
+                { word: "MySQL", size: scale * 0.5 },
+                { word: "PostgreSQL", size: scale * 0.6 },
+                { word: "Hibernate", size: scale * 0.5 },
+                { word: "Express", size: scale * 0.8 },
+                { word: "GraphQL", size: scale * 0.8 },
+                { word: "Docker", size: scale * 0.3 },
+                { word: "Apache", size: scale * 0.4 },
+                { word: "Tomcat", size: scale * 0.4 },
+                { word: "Python", size: scale * 0.5 },
+                { word: "Electron", size: scale * 0.6 },
+                { word: "Alrorithms", size: scale * 0.5 },
+            ]
+
+            // set the dimensions and margins of the graph
+            let width = 240, height = 180;
+
+            // append the svg object to the body of the page
+            let svg = d3.select("#tag-cloud")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+            // .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            // This function takes the output of 'layout' above and draw the words
+            // Wordcloud features that are THE SAME from one word to the other can be here
+            const draw = (words) => {
+                svg
+                    .append("g")
+                    .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+                    .selectAll("text")
+                    .data(words)
+                    .enter().append("text")
+                    .style("font-size", function (d) { return d.size; })
+                    .style("fill", "#565656")
+                    .attr("text-anchor", "middle")
+                    .style("font-family", "Inconsolata")
+                    .attr("transform", function (d) {
+                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                    })
+                    .text(function (d) { return d.text; });
+            }
+            // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+            // Wordcloud features that are different from one word to the other must be here
+            let layout = d3.layout.cloud()
+                .size([width, height])
+                .words(tags.map(function (d) { return { text: d.word, size: d.size }; }))
+                .padding(2)        //space between words
+                .rotate(0)
+                .fontSize(function (d) { return d.size; })      // font size of words
+                .on("end", draw);
+            layout.start();
+        })
+    </script>
+
+
+    <div id="tag-cloud-generated"><svg width="220" height="160">
+            <g>
+                <g transform="translate(110,80)"><text text-anchor="middle" transform="translate(6,-20)rotate(0)"
+                        style="font-size: 30px; fill: rgb(0, 0, 0); font-family: Inconsolata;">Java</text><text
+                        text-anchor="middle" transform="translate(-16,22)rotate(0)"
+                        style="font-size: 27px; fill: rgb(0, 0, 0); font-family: Inconsolata;">jQuery</text><text
+                        text-anchor="middle" transform="translate(47,5)rotate(0)"
+                        style="font-size: 27px; fill: rgb(0, 0, 0); font-family: Inconsolata;">XML</text><text
+                        text-anchor="middle" transform="translate(38,33)rotate(0)"
+                        style="font-size: 27px; fill: rgb(0, 0, 0); font-family: Inconsolata;">C#</text><text
+                        text-anchor="middle" transform="translate(-41,-22)rotate(0)"
+                        style="font-size: 24px; fill: rgb(0, 0, 0); font-family: Inconsolata;">JSP</text><text
+                        text-anchor="middle" transform="translate(31,-39)rotate(0)"
+                        style="font-size: 21px; fill: rgb(0, 0, 0); font-family: Inconsolata;">J2EE</text><text
+                        text-anchor="middle" transform="translate(-37,-3)rotate(0)"
+                        style="font-size: 21px; fill: rgb(0, 0, 0); font-family: Inconsolata;">Servlets</text><text
+                        text-anchor="middle" transform="translate(-34,-48)rotate(0)"
+                        style="font-size: 21px; fill: rgb(0, 0, 0); font-family: Inconsolata;">ASP.Net</text><text
+                        text-anchor="middle" transform="translate(-6,47)rotate(0)"
+                        style="font-size: 21px; fill: rgb(0, 0, 0); font-family: Inconsolata;">Express</text><text
+                        text-anchor="middle" transform="translate(70,-22)rotate(0)"
+                        style="font-size: 18px; fill: rgb(0, 0, 0); font-family: Inconsolata;">Struts</text><text
+                        text-anchor="middle" transform="translate(18,-65)rotate(0)"
+                        style="font-size: 18px; fill: rgb(0, 0, 0); font-family: Inconsolata;">JDBC</text><text
+                        text-anchor="middle" transform="translate(-60,43)rotate(0)"
+                        style="font-size: 15px; fill: rgb(0, 0, 0); font-family: Inconsolata;">JSF</text><text
+                        text-anchor="middle" transform="translate(19,65)rotate(0)"
+                        style="font-size: 15px; fill: rgb(0, 0, 0); font-family: Inconsolata;">MySQL</text><text
+                        text-anchor="middle" transform="translate(-57,62)rotate(0)"
+                        style="font-size: 15px; fill: rgb(0, 0, 0); font-family: Inconsolata;">Hibernate</text><text
+                        text-anchor="middle" transform="translate(69,19)rotate(0)"
+                        style="font-size: 12px; fill: rgb(0, 0, 0); font-family: Inconsolata;">JPA</text><text
+                        text-anchor="middle" transform="translate(74,35)rotate(0)"
+                        style="font-size: 12px; fill: rgb(0, 0, 0); font-family: Inconsolata;">Apache</text><text
+                        text-anchor="middle" transform="translate(78,-45)rotate(0)"
+                        style="font-size: 12px; fill: rgb(0, 0, 0); font-family: Inconsolata;">Tomcat</text><text
+                        text-anchor="middle" transform="translate(53,49)rotate(0)"
+                        style="font-size: 9px; fill: rgb(0, 0, 0); font-family: Inconsolata;">Docker</text></g>
+            </g>
+        </svg></div>
+
+    <div id="tag-cloud"></div>
+</body>
